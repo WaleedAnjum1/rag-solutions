@@ -1,0 +1,11 @@
+{
+  "925a3c6b-82dc-4584-941e-6f4390273418": {
+    "doc_id": "925a3c6b-82dc-4584-941e-6f4390273418",
+    "filename": "PatientCaseReport.pdf",
+    "patient_id": "p_1",
+    "record_type": "lab_report",
+    "chunks_count": 15,
+    "file_type": "pdf",
+    "ingested_at": "2026-08-31T07:20:12.118609+00:00"
+  }
+}
