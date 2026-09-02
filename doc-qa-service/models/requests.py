@@ -2,7 +2,15 @@
 Pydantic request schemas for the Document Q&A API.
 """
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+
+
+def _require_text(value: str) -> str:
+    """Strip surrounding whitespace and reject a value that was only whitespace."""
+    stripped = value.strip()
+    if not stripped:
+        raise ValueError("must not be empty or whitespace only")
+    return stripped
 
 
 class QueryRequest(BaseModel):
@@ -31,6 +39,9 @@ class QueryRequest(BaseModel):
         default=None,
         description="Optionally restrict retrieval to a specific document.",
     )
+
+    _clean_text = field_validator("namespace", "question")(_require_text)
+
     model_config = {
         "json_schema_extra": {
             "examples": [

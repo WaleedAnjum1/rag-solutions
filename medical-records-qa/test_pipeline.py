@@ -93,7 +93,7 @@ def test_ingest() -> str | None:
     files = {"file": ("visit_2024.txt", SAMPLE_RECORD_TXT, "text/plain")}
     data = {"patient_id": PATIENT_ID, "record_type": "consultation_note"}
 
-    r = httpx.post(f"{BASE_URL}/ingest/", files=files, data=data, timeout=30)
+    r = httpx.post(f"{BASE_URL}/ingest", files=files, data=data, timeout=30)
     print(f"Status: {r.status_code}")
 
     if r.status_code != 201:
@@ -109,7 +109,7 @@ def test_ingest() -> str | None:
 
 def test_list_patients() -> None:
     print_separator("3. List Patients")
-    r = httpx.get(f"{BASE_URL}/patients/", timeout=10)
+    r = httpx.get(f"{BASE_URL}/patients", timeout=10)
     print(f"Status: {r.status_code}")
     print(json.dumps(r.json(), indent=2))
 
@@ -130,7 +130,7 @@ def test_query(question: str) -> None:
         "question": question,
         "top_k": 6,
     }
-    r = httpx.post(f"{BASE_URL}/query/", json=payload, timeout=120)
+    r = httpx.post(f"{BASE_URL}/query", json=payload, timeout=120)
     print(f"Status: {r.status_code}")
 
     if r.status_code != 200:
@@ -178,7 +178,7 @@ def test_refusal() -> None:
         "question": "What is the capital of France?",
         "top_k": 5,
     }
-    r = httpx.post(f"{BASE_URL}/query/", json=payload, timeout=120)
+    r = httpx.post(f"{BASE_URL}/query", json=payload, timeout=120)
     result = r.json()
     print(f"Answer: {result['answer']}")
     expected = "I couldn't find relevant information in the provided records."

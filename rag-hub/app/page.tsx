@@ -35,6 +35,19 @@ const MODULES = [
     port: ":8100",
   },
   {
+    id: "multilingual",
+    href: "/multilingual",
+    service: "multilingual" as const,
+    emoji: "🌍",
+    title: "Multilingual Support Bot",
+    subtitle: "Global Q&A with cross-lingual retrieval",
+    description:
+      "Ingest support content in one language and answer customers in any language using cross-lingual vector retrieval.",
+    accent: "#3b82f6",
+    features: ["Cross-lingual retrieval", "Language detection", "Draft agent replies"],
+    port: ":8300",
+  },
+  {
     id: "legal",
     href: "#",
     service: null,

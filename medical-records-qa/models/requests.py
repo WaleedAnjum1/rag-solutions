@@ -4,7 +4,7 @@ Pydantic request schemas for the Medical Records Q&A API.
 
 from typing import Literal, Optional
 
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
 
 # Recognised medical record categories
 RecordType = Literal[
@@ -15,6 +15,14 @@ RecordType = Literal[
     "consultation_note",
     "general",
 ]
+
+
+def _require_text(value: str) -> str:
+    """Strip surrounding whitespace and reject a value that was only whitespace."""
+    stripped = value.strip()
+    if not stripped:
+        raise ValueError("must not be empty or whitespace only")
+    return stripped
 
 
 class IngestRequest(BaseModel):
@@ -29,6 +37,8 @@ class IngestRequest(BaseModel):
         default="general",
         description="Category of the uploaded medical document.",
     )
+
+    _clean_text = field_validator("patient_id")(_require_text)
 
 
 class QueryRequest(BaseModel):
@@ -63,6 +73,8 @@ class QueryRequest(BaseModel):
         description="Optionally restrict retrieval to a specific document.",
     )
 
+    _clean_text = field_validator("patient_id", "question")(_require_text)
+
     model_config = {
         "json_schema_extra": {
             "examples": [
@@ -94,6 +106,8 @@ class SummaryRequest(BaseModel):
             "Keep low (8) on CPU-only hardware. Increase only with GPU inference."
         ),
     )
+
+    _clean_text = field_validator("patient_id")(_require_text)
 
     model_config = {
         "json_schema_extra": {
