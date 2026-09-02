@@ -27,7 +27,7 @@ router = APIRouter(prefix="/patients", tags=["Patients"])
 # ---------------------------------------------------------------------------
 
 @router.get(
-    "/",
+    "",
     response_model=PatientListResponse,
     summary="List all patients",
     description="Returns a sorted list of all patient IDs that have at least one ingested record.",

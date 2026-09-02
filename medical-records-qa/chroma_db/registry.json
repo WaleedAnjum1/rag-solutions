@@ -7,5 +7,14 @@
     "chunks_count": 15,
     "file_type": "pdf",
     "ingested_at": "2026-08-31T07:20:12.118609+00:00"
+  },
+  "4cbabd8b-a929-4650-a0d2-55d60dba32ee": {
+    "doc_id": "4cbabd8b-a929-4650-a0d2-55d60dba32ee",
+    "filename": "PatientCaseReport.pdf",
+    "patient_id": "PT-001",
+    "record_type": "lab_report",
+    "chunks_count": 15,
+    "file_type": "pdf",
+    "ingested_at": "2026-09-02T10:31:40.761875+00:00"
   }
 }

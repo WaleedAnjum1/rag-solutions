@@ -49,7 +49,7 @@ def get_vector_store() -> VectorStore:
 # ---------------------------------------------------------------------------
 
 @router.post(
-    "/",
+    "",
     response_model=IngestResponse,
     status_code=status.HTTP_201_CREATED,
     summary="Ingest a medical record",

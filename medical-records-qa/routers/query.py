@@ -41,7 +41,7 @@ def get_rag_chain(
 # ---------------------------------------------------------------------------
 
 @router.post(
-    "/",
+    "",
     response_model=QueryResponse,
     summary="Ask a clinical question",
     description=(
