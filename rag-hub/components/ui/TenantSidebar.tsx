@@ -1,16 +1,36 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import type { TenantDocument } from "@/lib/api/multilingualApi";
-import { multilingualApi } from "@/lib/api/multilingualApi";
 import { FileDropzone } from "./FileDropzone";
+
+// Minimal interface that both multilingualApi and hrApi satisfy.
+interface TenantDocument {
+  doc_id: string;
+  tenant_id: string;
+  filename: string;
+  doc_type: string;
+  language: string;
+  chunks_count: number;
+  ingested_at: string;
+}
+
+interface TenantApi {
+  listTenants(): Promise<{ tenants: string[]; total: number }>;
+  deleteTenant(tenantId: string): Promise<unknown>;
+  listDocuments(tenantId: string): Promise<{ documents: TenantDocument[]; total: number }>;
+  deleteDocument(tenantId: string, docId: string): Promise<unknown>;
+  ingestDocument(file: File, tenantId: string, docType: string, language: string): Promise<TenantDocument>;
+}
 
 interface Props {
   selectedTenant: string | null;
   onSelectTenant: (id: string) => void;
+  api: TenantApi;
+  recordTypeOptions?: readonly string[];
+  uploadLabel?: string;
 }
 
-const RECORD_TYPE_OPTIONS = [
+const DEFAULT_RECORD_TYPES = [
   "general",
   "faq",
   "help_article",
@@ -28,9 +48,20 @@ const typeColors: Record<string, string> = {
   product_guide: "#3b82f6",
   troubleshooting: "#ef4444",
   general: "#94a3b8",
+  handbook: "#a78bfa",
+  sop: "#34d399",
+  onboarding: "#60a5fa",
+  benefits: "#fb923c",
+  compliance: "#f472b6",
 };
 
-export function TenantSidebar({ selectedTenant, onSelectTenant }: Props) {
+export function TenantSidebar({
+  selectedTenant,
+  onSelectTenant,
+  api,
+  recordTypeOptions = DEFAULT_RECORD_TYPES,
+  uploadLabel = "Drop support document",
+}: Props) {
   const [tenants, setTenants] = useState<string[]>([]);
   const [documents, setDocuments] = useState<TenantDocument[]>([]);
   const [loading, setLoading] = useState(true);
@@ -41,30 +72,30 @@ export function TenantSidebar({ selectedTenant, onSelectTenant }: Props) {
   const [showUpload, setShowUpload] = useState(false);
   const [uploading, setUploading] = useState(false);
   const [uploadProgress, setUploadProgress] = useState(0);
-  const [selectedRecordType, setSelectedRecordType] = useState("general");
+  const [selectedRecordType, setSelectedRecordType] = useState(recordTypeOptions[0]);
   const [selectedLanguage, setSelectedLanguage] = useState("auto");
 
   const [error, setError] = useState<string | null>(null);
 
   const loadTenants = useCallback(async () => {
     try {
-      const data = await multilingualApi.listTenants();
+      const data = await api.listTenants();
       setTenants(data.tenants);
     } catch {
       // ignore
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [api]);
 
   const loadDocuments = useCallback(async (tid: string) => {
     try {
-      const data = await multilingualApi.listDocuments(tid);
+      const data = await api.listDocuments(tid);
       setDocuments(data.documents);
     } catch {
       setDocuments([]);
     }
-  }, []);
+  }, [api]);
 
   useEffect(() => {
     loadTenants();
@@ -87,7 +118,7 @@ export function TenantSidebar({ selectedTenant, onSelectTenant }: Props) {
   const handleDeleteTenant = async (tid: string) => {
     if (!confirm(`Delete ALL documents for tenant "${tid}"?`)) return;
     try {
-      await multilingualApi.deleteTenant(tid);
+      await api.deleteTenant(tid);
       setTenants((prev) => prev.filter((t) => t !== tid));
       if (selectedTenant === tid) onSelectTenant("");
     } catch (e) {
@@ -98,7 +129,7 @@ export function TenantSidebar({ selectedTenant, onSelectTenant }: Props) {
   const handleDeleteDocument = async (tid: string, docId: string) => {
     if (!confirm("Delete this document?")) return;
     try {
-      await multilingualApi.deleteDocument(tid, docId);
+      await api.deleteDocument(tid, docId);
       setDocuments((prev) => prev.filter((r) => r.doc_id !== docId));
     } catch (e) {
       setError((e as Error).message);
@@ -117,7 +148,7 @@ export function TenantSidebar({ selectedTenant, onSelectTenant }: Props) {
         setUploadProgress((p) => Math.min(p + 15, 85));
       }, 300);
 
-      const result = await multilingualApi.ingestDocument(files[0], selectedTenant, selectedRecordType, selectedLanguage);
+      const result = await api.ingestDocument(files[0], selectedTenant, selectedRecordType, selectedLanguage);
       clearInterval(prog);
       setUploadProgress(100);
 
@@ -190,7 +221,7 @@ export function TenantSidebar({ selectedTenant, onSelectTenant }: Props) {
           <input
             id="new-tenant-id-input"
             className="input"
-            placeholder="Tenant ID (e.g. acme_saas)"
+            placeholder="Tenant ID (e.g. acme_corp)"
             value={newTenantId}
             onChange={(e) => setNewTenantId(e.target.value)}
             onKeyDown={(e) => e.key === "Enter" && handleAddTenant()}
@@ -335,7 +366,7 @@ export function TenantSidebar({ selectedTenant, onSelectTenant }: Props) {
                   onClick={() => setShowUpload((v) => !v)}
                   style={{ width: "100%", marginTop: 4 }}
                 >
-                  {showUpload ? "✕ Cancel" : "+ Upload Support Doc"}
+                  {showUpload ? "✕ Cancel" : "+ Upload Doc"}
                 </button>
 
                 {showUpload && (
@@ -346,7 +377,7 @@ export function TenantSidebar({ selectedTenant, onSelectTenant }: Props) {
                       onChange={(e) => setSelectedRecordType(e.target.value)}
                       style={{ marginBottom: 8, fontSize: "0.82rem", padding: "6px 10px" }}
                     >
-                      {RECORD_TYPE_OPTIONS.map((t) => (
+                      {recordTypeOptions.map((t) => (
                         <option key={t} value={t}>
                           {t.replace(/_/g, " ")}
                         </option>
@@ -365,8 +396,8 @@ export function TenantSidebar({ selectedTenant, onSelectTenant }: Props) {
                       onFiles={handleUpload}
                       uploading={uploading}
                       progress={uploadProgress}
-                      label="Drop support document"
-                      sublabel="PDF, DOCX, TXT, etc."
+                      label={uploadLabel}
+                      sublabel="PDF, DOCX, TXT, MD, etc."
                     />
                   </div>
                 )}

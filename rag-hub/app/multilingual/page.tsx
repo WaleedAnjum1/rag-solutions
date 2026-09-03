@@ -45,6 +45,7 @@ export default function MultilingualPage() {
         <TenantSidebar
           selectedTenant={selectedTenant}
           onSelectTenant={handleSelectTenant}
+          api={multilingualApi}
         />
       </aside>
 

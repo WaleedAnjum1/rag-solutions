@@ -63,8 +63,8 @@ const MODULES = [
   },
   {
     id: "hr",
-    href: "#",
-    service: null,
+    href: "/hr",
+    service: "hr" as const,
     emoji: "👥",
     title: "HR Policy Bot",
     subtitle: "Employee handbook assistant",
@@ -72,8 +72,7 @@ const MODULES = [
       "Ingest company policies, SOPs, and handbooks. Answer HR queries instantly across your entire organization.",
     accent: "#ec4899",
     features: ["Policy Q&A", "Onboarding assistant", "Slack / Teams ready"],
-    port: null,
-    comingSoon: true,
+    port: ":8400",
   },
 ];
 

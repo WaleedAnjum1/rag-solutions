@@ -1,0 +1,92 @@
+{
+  "dc367bec-babb-4b9d-9c7b-a639c97214f5": {
+    "doc_id": "dc367bec-babb-4b9d-9c7b-a639c97214f5",
+    "filename": "dummy_hr.txt",
+    "tenant_id": "acme_corp",
+    "doc_type": "general",
+    "language": "en",
+    "chunks_count": 1,
+    "file_type": "txt",
+    "ingested_at": "2026-09-03T11:31:20.149109+00:00"
+  },
+  "c2e3a051-27ff-4670-b41b-b793e8812bed": {
+    "doc_id": "c2e3a051-27ff-4670-b41b-b793e8812bed",
+    "filename": "dummy_hr.txt",
+    "tenant_id": "acme_corp",
+    "doc_type": "general",
+    "language": "en",
+    "chunks_count": 1,
+    "file_type": "txt",
+    "ingested_at": "2026-09-03T11:33:01.002069+00:00"
+  },
+  "31ddc293-6595-44af-bf0a-4028ae784d85": {
+    "doc_id": "31ddc293-6595-44af-bf0a-4028ae784d85",
+    "filename": "dummy_handbook.md",
+    "tenant_id": "acme_corp",
+    "doc_type": "general",
+    "language": "en",
+    "chunks_count": 2,
+    "file_type": "md",
+    "ingested_at": "2026-09-03T11:34:48.712473+00:00"
+  },
+  "961ddbbb-2a79-4cee-8e62-989d1301d11b": {
+    "doc_id": "961ddbbb-2a79-4cee-8e62-989d1301d11b",
+    "filename": "dummy_handbook.md",
+    "tenant_id": "acme_corp",
+    "doc_type": "policy",
+    "language": "en",
+    "chunks_count": 2,
+    "file_type": "md",
+    "ingested_at": "2026-09-03T11:35:47.678787+00:00"
+  },
+  "23bce45e-3252-4f14-9188-18dfb1027820": {
+    "doc_id": "23bce45e-3252-4f14-9188-18dfb1027820",
+    "filename": "dummy_hr.txt",
+    "tenant_id": "acme_corp",
+    "doc_type": "general",
+    "language": "en",
+    "chunks_count": 1,
+    "file_type": "txt",
+    "ingested_at": "2026-09-03T11:36:51.455734+00:00"
+  },
+  "a8e22c10-94ad-40fd-a4c2-ba1f5a69c4e6": {
+    "doc_id": "a8e22c10-94ad-40fd-a4c2-ba1f5a69c4e6",
+    "filename": "test_policy.txt",
+    "tenant_id": "acme",
+    "doc_type": "general",
+    "language": "en",
+    "chunks_count": 1,
+    "file_type": "txt",
+    "ingested_at": "2026-09-03T11:45:45.608606+00:00"
+  },
+  "41917f63-ca77-4bf5-85b6-d07ea9a35b9d": {
+    "doc_id": "41917f63-ca77-4bf5-85b6-d07ea9a35b9d",
+    "filename": "test_policy.txt",
+    "tenant_id": "acme",
+    "doc_type": "general",
+    "language": "en",
+    "chunks_count": 1,
+    "file_type": "txt",
+    "ingested_at": "2026-09-03T11:46:06.432716+00:00"
+  },
+  "375e6df9-c90d-4486-800a-6ceda78ac1b8": {
+    "doc_id": "375e6df9-c90d-4486-800a-6ceda78ac1b8",
+    "filename": "test_policy.txt",
+    "tenant_id": "acme",
+    "doc_type": "general",
+    "language": "en",
+    "chunks_count": 1,
+    "file_type": "txt",
+    "ingested_at": "2026-09-03T11:49:05.117491+00:00"
+  },
+  "7c28db6f-98f3-49bb-bed9-64f1e1140d23": {
+    "doc_id": "7c28db6f-98f3-49bb-bed9-64f1e1140d23",
+    "filename": "nxb-hr-p-09-v2.1-private-harassment_policy_2005429134.pdf",
+    "tenant_id": "acme_corp",
+    "doc_type": "policy",
+    "language": "en",
+    "chunks_count": 25,
+    "file_type": "pdf",
+    "ingested_at": "2026-09-03T12:05:19.224109+00:00"
+  }
+}

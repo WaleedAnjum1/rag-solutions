@@ -39,6 +39,7 @@ async function proxy(
 
   // Forward body for POST/PUT/PATCH; skip for GET/DELETE
   const hasBody = req.method !== "GET" && req.method !== "DELETE" && req.method !== "HEAD";
+  const bodyBuffer = hasBody ? await req.arrayBuffer() : undefined;
 
   // Forward relevant headers — drop host to avoid SNI mismatch
   const forwardHeaders = new Headers();
@@ -50,10 +51,7 @@ async function proxy(
     const upstreamRes = await fetch(url, {
       method: req.method,
       headers: forwardHeaders,
-      body: hasBody ? req.body : undefined,
-      // Required for SSE: don't buffer the entire response
-      // @ts-expect-error — Node.js fetch duplex option
-      duplex: "half",
+      body: bodyBuffer,
     });
 
     // Stream the response back — preserves SSE text/event-stream
