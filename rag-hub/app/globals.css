@@ -45,6 +45,27 @@
   --accent-glow: 0 0 24px rgba(129, 140, 248, 0.2);
 }
 
+/* Legal module — amber */
+[data-module="legal"] {
+  --accent: #f59e0b;
+  --accent-dim: rgba(245, 158, 11, 0.12);
+  --accent-glow: 0 0 24px rgba(245, 158, 11, 0.2);
+}
+
+/* HR module — fuchsia */
+[data-module="hr"] {
+  --accent: #d946ef;
+  --accent-dim: rgba(217, 70, 239, 0.12);
+  --accent-glow: 0 0 24px rgba(217, 70, 239, 0.2);
+}
+
+/* Multilingual module — blue */
+[data-module="multilingual"] {
+  --accent: #3b82f6;
+  --accent-dim: rgba(59, 130, 246, 0.12);
+  --accent-glow: 0 0 24px rgba(59, 130, 246, 0.2);
+}
+
 /* ─── Reset / Base ──────────────────────────────────────────────────────────── */
 *,
 *::before,

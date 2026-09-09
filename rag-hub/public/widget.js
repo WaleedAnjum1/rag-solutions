@@ -20,7 +20,7 @@
   var baseUrl = script.getAttribute("data-base-url") || "http://localhost:3000";
   var service = script.getAttribute("data-service") || "docs";
   var patientId = script.getAttribute("data-patient-id") || "";
-  var accent = script.getAttribute("data-accent") || (service === "medical" ? "#00d4aa" : "#818cf8");
+  var accent = script.getAttribute("data-accent") || (service === "medical" ? "#00d4aa" : service === "legal" ? "#f59e0b" : "#818cf8");
   var position = script.getAttribute("data-position") || "bottom-right";
 
   // Position styles
@@ -75,7 +75,11 @@
   });
 
   btn.addEventListener("click", function () {
-    open ? closePanel() : openPanel();
+    if (open) {
+      closePanel();
+    } else {
+      openPanel();
+    }
   });
 
   // Panel container

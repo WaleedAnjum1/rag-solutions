@@ -1,0 +1,12 @@
+{
+  "da5dcfbd-bc78-4a07-8d67-6440e5e3fbf2": {
+    "doc_id": "da5dcfbd-bc78-4a07-8d67-6440e5e3fbf2",
+    "filename": "sample_faq.md",
+    "tenant_id": "acme",
+    "doc_type": "general",
+    "language": "en",
+    "chunks_count": 2,
+    "file_type": "md",
+    "ingested_at": "2026-09-03T07:23:57.948273+00:00"
+  }
+}

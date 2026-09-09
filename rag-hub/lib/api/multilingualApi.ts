@@ -69,8 +69,8 @@ export const multilingualApi = {
     question: string,
     tenantId: string,
     language?: string
-  ): Promise<Response> {
-    const payload: any = {
+    ): Promise<Response> {
+    const payload: Record<string, unknown> = {
       tenant_id: tenantId,
       question,
       stream: true,
@@ -97,7 +97,7 @@ export const multilingualApi = {
     tone: string = "friendly",
     language?: string
   ) {
-    const payload: any = {
+    const payload: Record<string, unknown> = {
       tenant_id: tenantId,
       message,
       tone,

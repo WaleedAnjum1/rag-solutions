@@ -6,7 +6,7 @@ import { HealthBadge } from "@/components/ui/HealthBadge";
 interface Props {
   title: string;
   subtitle: string;
-  service: "medical" | "docs" | "multilingual" | "hr";
+  service: "medical" | "docs" | "multilingual" | "hr" | "legal";
   backHref?: string;
   actions?: React.ReactNode;
 }

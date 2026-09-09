@@ -5,7 +5,7 @@ import { HealthBadge } from "@/components/ui/HealthBadge";
 
 export interface ModuleCardProps {
   href: string;
-  service: "medical" | "docs" | "multilingual" | "hr" | null;
+  service: "medical" | "docs" | "multilingual" | "hr" | "legal" | null;
   emoji: string;
   title: string;
   subtitle: string;

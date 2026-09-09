@@ -6,18 +6,21 @@ import { ChatPanel } from "@/components/ui/ChatPanel";
 import { useStreamQuery } from "@/lib/hooks/useStreamQuery";
 import { medicalApi } from "@/lib/api/medicalApi";
 import { docsApi } from "@/lib/api/docsApi";
+import { legalPublicApi } from "@/lib/api/legalPublicApi";
 
 function WidgetInner() {
   const params = useSearchParams();
   const service = params.get("service") ?? "docs";
   const patientId = params.get("patientId") ?? "";
-  const accent = params.get("accent") ?? (service === "medical" ? "#00d4aa" : "#818cf8");
+  const accent = params.get("accent") ?? (service === "medical" ? "#00d4aa" : service === "legal" ? "#f59e0b" : "#818cf8");
 
   const { stream, state, reset } = useStreamQuery();
 
   const handleSend = async (question: string) => {
     if (service === "medical" && patientId) {
       await stream(() => medicalApi.streamQuery(question, patientId));
+    } else if (service === "legal") {
+      await stream(() => legalPublicApi.streamQuery(question));
     } else {
       await stream(() => docsApi.streamQuery(question));
     }
@@ -59,7 +62,7 @@ function WidgetInner() {
           }}
         />
         <span style={{ fontSize: "0.84rem", fontWeight: 600, color: "var(--text-primary)" }}>
-          {service === "medical" ? "Medical Assistant" : "Document Q&A"}
+          {service === "medical" ? "Medical Assistant" : service === "legal" ? "Legal Assistant" : "Document Q&A"}
         </span>
         {patientId && (
           <span style={{ fontSize: "0.72rem", color: "var(--text-muted)", marginLeft: 4 }}>

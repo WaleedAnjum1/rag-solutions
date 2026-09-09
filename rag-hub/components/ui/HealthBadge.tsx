@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import type { HealthResponse } from "@/lib/types";
 
 interface Props {
-  service: "medical" | "docs" | "multilingual" | "hr";
+  service: "medical" | "docs" | "multilingual" | "hr" | "legal";
   label: string;
 }
 

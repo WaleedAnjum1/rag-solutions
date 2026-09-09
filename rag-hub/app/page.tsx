@@ -49,8 +49,8 @@ const MODULES = [
   },
   {
     id: "legal",
-    href: "#",
-    service: null,
+    href: "/legal",
+    service: "legal" as const,
     emoji: "⚖️",
     title: "Legal Analyzer",
     subtitle: "Contract & clause intelligence",
@@ -58,8 +58,7 @@ const MODULES = [
       "Upload contracts, NDAs, and leases. Extract clauses, flag risks, and get instant answers from legal documents.",
     accent: "#f59e0b",
     features: ["Risk flagging", "Clause extraction", "Multi-document comparison"],
-    port: null,
-    comingSoon: true,
+    port: ":8500",
   },
   {
     id: "hr",

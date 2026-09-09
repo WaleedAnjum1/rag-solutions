@@ -124,4 +124,51 @@ export interface SSEToken {
   done: boolean;
   sources?: Source[];
   error?: string;
+  notice?: string;
+  escalate?: boolean;
+  escalation_reason?: string;
+}
+
+// ─── Legal Document Analyzer ──────────────────────────────────────────────────
+
+export interface Clause {
+  id: string;
+  clause_number?: string | null;
+  heading?: string | null;
+  text: string;
+  clause_type: string;
+  summary: string;
+  page?: number | null;
+}
+
+export interface RiskFlag {
+  id: string;
+  severity: "high" | "medium" | "low";
+  title: string;
+  rationale: string;
+  clause_ref?: string | null;
+  source_id?: string | null;
+}
+
+export interface DocumentBrief {
+  doc_id: string;
+  parties: string[];
+  effective_date?: string | null;
+  term?: string | null;
+  governing_law?: string | null;
+  key_obligations: string[];
+  termination_triggers: string[];
+  unusual_provisions: string[];
+}
+
+export interface LegalDocument {
+  doc_id: string;
+  tenant_id: string;
+  filename: string;
+  doc_type: string;
+  practice_area?: string;
+  jurisdiction?: string;
+  language: string;
+  chunks_count: number;
+  ingested_at: string;
 }
