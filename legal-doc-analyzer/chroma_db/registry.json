@@ -20,5 +20,29 @@
     "chunks_count": 16,
     "file_type": "md",
     "ingested_at": "2026-09-09T13:05:22.507379+00:00"
+  },
+  "8854caeb-9c26-41df-b9e5-0786709ae69b": {
+    "doc_id": "8854caeb-9c26-41df-b9e5-0786709ae69b",
+    "filename": "sample_statute.md",
+    "tenant_id": "acme",
+    "doc_type": "statute",
+    "practice_area": null,
+    "jurisdiction": null,
+    "language": "en",
+    "chunks_count": 3,
+    "file_type": "md",
+    "ingested_at": "2026-09-09T14:14:51.323976+00:00"
+  },
+  "bc63bbc8-019f-44f5-8ebd-c03eaec5c147": {
+    "doc_id": "bc63bbc8-019f-44f5-8ebd-c03eaec5c147",
+    "filename": "sample_nda.md",
+    "tenant_id": "acme",
+    "doc_type": "nda",
+    "practice_area": null,
+    "jurisdiction": null,
+    "language": "en",
+    "chunks_count": 2,
+    "file_type": "md",
+    "ingested_at": "2026-09-09T14:17:40.798192+00:00"
   }
 }
