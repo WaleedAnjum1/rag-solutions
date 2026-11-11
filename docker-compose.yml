@@ -1,0 +1,55 @@
+version: '3.8'
+
+services:
+  # ---------------------------------------------------------------------------
+  # Ollama Local LLM Runner (Optional - comment out if using Cloud APIs)
+  # ---------------------------------------------------------------------------
+  ollama:
+    image: ollama/ollama:latest
+    container_name: rag-ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Core Document QA Microservice (:8100)
+  # ---------------------------------------------------------------------------
+  doc-qa-service:
+    build:
+      context: ./doc-qa-service
+      dockerfile: Dockerfile
+    container_name: rag-doc-qa
+    ports:
+      - "8100:8100"
+    environment:
+      - OLLAMA_BASE_URL=http://ollama:11434
+      - OLLAMA_MODEL=qwen2.5:3b
+      - LLM_PROVIDER=ollama
+      - PORT=8100
+      - HOST=0.0.0.0
+    depends_on:
+      - ollama
+    restart: unless-stopped
+
+  # ---------------------------------------------------------------------------
+  # Unified Frontend Dashboard (RAG Hub)
+  # ---------------------------------------------------------------------------
+  rag-hub:
+    build:
+      context: ./rag-hub
+      dockerfile: Dockerfile
+    container_name: rag-hub-ui
+    ports:
+      - "3000:3000"
+    environment:
+      - DOCS_SERVICE_URL=http://doc-qa-service:8100
+      - NEXT_PUBLIC_API_URL=http://localhost:3000
+    depends_on:
+      - doc-qa-service
+    restart: unless-stopped
+
+volumes:
+  ollama_data:
+

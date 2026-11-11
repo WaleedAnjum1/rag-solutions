@@ -12,9 +12,19 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    # Ollama
+    # LLM Provider Configuration
+    # Supported: 'ollama', 'gemini', 'openai', 'anthropic'
+    llm_provider: str = "ollama"
+    llm_model: str = "qwen2.5:3b"
+
+    # Ollama settings
     ollama_base_url: str = "http://localhost:11434"
     ollama_model: str = "qwen2.5:3b"
+
+    # Cloud API Keys
+    gemini_api_key: str | None = None
+    openai_api_key: str | None = None
+    anthropic_api_key: str | None = None
 
     # Embeddings
     embedding_model: str = "all-MiniLM-L6-v2"

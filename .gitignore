@@ -48,97 +48,58 @@ coverage.xml
 .pytest_cache/
 cover/
 
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-.pybuilder/
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# pipenv
-#Pipfile.lock
-
-# poetry
-#poetry.lock
-
-# pdm
-.pdm.toml
-.pdm-python
-.pdm-build/
-
-# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
-__pypackages__/
-
-# Celery stuff
-celerybeat-schedule
-celerybeat.pid
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
+# Environments & Virtualenvs
 .env
+.env.local
+.env.*.local
 .venv
+.venv/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
 
-# Spyder project settings
-.spyderproject
-.spyproject
+# Node / Frontend
+node_modules/
+.next/
+out/
+.turbo/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Rope project settings
-.ropeproject
+# Vector DB & Embeddings Local State (never track database storage)
+chroma_db/
+*/chroma_db/
+**/chroma_db/
+*.sqlite3
+*.sqlite3-journal
 
-# mkdocs documentation
-/site
+# Internal / Workflow Agent documentation (kept locally, not in git repo)
+CLAUDE.md
+*/CLAUDE.md
+**/CLAUDE.md
+implementation_plan.md
+*/implementation_plan.md
+**/implementation_plan.md
+SKILL.md
+*/SKILL.md
+**/SKILL.md
+RAG_IDEAS.md
+*/RAG_IDEAS.md
+**/RAG_IDEAS.md
+AGENTS.md
+*/AGENTS.md
+**/AGENTS.md
 
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# pytype static type analyzer
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# PyCharm
+# OS & Custom IDEs
+.DS_Store
+Thumbs.db
 .idea/
-
-# Custom IDEs
 .vscode/
 .claude/
+.spyderproject
+.spyproject
+.ropeproject
