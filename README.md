@@ -8,6 +8,10 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.11%20%7C%203.12-3776AB?style=flat&logo=python&logoColor=white)](https://www.python.org/)
 
+<div align="center">
+  <img src="./assets/showcase.gif" alt="RAG Solutions Suite Launch Showcase" width="100%" style="border-radius: 12px; border: 1px solid #1e1e28; margin: 16px 0;" />
+</div>
+
 ---
 
 ## 📌 Overview
