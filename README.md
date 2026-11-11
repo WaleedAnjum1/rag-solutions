@@ -64,7 +64,7 @@ flowchart TD
 
 ### 1. Prerequisites
 - **Python 3.11+**
-- **Node.js 18+ & npm**
+- **Node.js 20+ & npm** (Required for Next.js 15+ / Tailwind v4)
 - **LLM Provider**:
   - [Ollama](https://ollama.ai) running locally (`ollama pull qwen2.5:3b` or `llama3.2`), or
   - API key for Google Gemini, OpenAI, or Anthropic.
